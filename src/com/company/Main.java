@@ -32,20 +32,6 @@ public class Main {
             if (cars[i].isWinner()) System.out.println(cars[i].getName() + winner);
             else System.out.println(cars[i].getName() + notWinner);
         }
-
-
-//        ExecutorService singl = Executors.newSingleThreadExecutor();
-//        ExecutorService pixed = Executors.newFixedThreadPool(10);
-//        ExecutorService cash = Executors.newCachedThreadPool();
-//
-//        Thread MyThred = new MyThread();
-//        Future result = singl.submit(MyThred);
-//        try {
-//            result.get(4, TimeUnit.SECONDS);
-//        } catch (TimeoutException e) {
-//            System.out.println("по истечению 4 сек задача завершина");
-//            result.cancel(true);
-//        }
     }
 }
 
