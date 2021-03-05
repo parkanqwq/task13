@@ -1,9 +1,7 @@
 package com.company;
 
-
 import static com.company.Car.leatsGoRacing;
 import static com.company.Road.finishRacing;
-import static com.company.Road.winnerCar;
 
 public class Main {
 
