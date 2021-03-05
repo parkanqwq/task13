@@ -54,10 +54,8 @@ public class Car implements Runnable {
         coreWin++;
         name = name + " занял " + coreWin + " место!";
         if (coreWin == 1) {
-            System.out.println();
             setWinner(true);
             System.out.println("ВАЖНОЕ ОБЪЯВЛЕНИЕ >>> " + name);
-            System.out.println();
         }
         if (coreWin == CARS_COUNTS) {
             System.out.println();
