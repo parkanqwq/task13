@@ -5,7 +5,6 @@ import java.util.concurrent.CountDownLatch;
 public class Road extends Stage {
 
     private static CountDownLatch finishRacing = new CountDownLatch(8);
-    private static int winnerCar = 0;
 
     public Road(float length) {
         this.length = length;
@@ -22,12 +21,16 @@ public class Road extends Stage {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        winnerCar++;
-        if (winnerCar == 5) c.setWinner(true);
-        if (winnerCar == 5) c.setName(c.getName() + " - занял 1 место,");
-        if (winnerCar == 6) c.setName(c.getName() + " - занял 2 место,");
-        if (winnerCar == 7) c.setName(c.getName() + " - занял 3 место,");
-        if (winnerCar == 8) c.setName(c.getName() + " - занял 4 место,");
+        if (finishRacing.getCount() == 3) {
+            c.setWinner(true);
+            System.out.println();
+            System.out.println(c.getName() + " выйграл гонку заняв ПЕРВОЕ МЕСТО!");
+            System.out.println();
+        }
+        if (finishRacing.getCount() == 3) c.setName(c.getName() + " - занял 1 место,");
+        if (finishRacing.getCount() == 2) c.setName(c.getName() + " - занял 2 место,");
+        if (finishRacing.getCount() == 1) c.setName(c.getName() + " - занял 3 место,");
+        if (finishRacing.getCount() == 0) c.setName(c.getName() + " - занял 4 место,");
     }
 
     public static CountDownLatch getFinishRacing() {

@@ -6,6 +6,7 @@ public class Main {
 
     public static void main(String[] args) throws InterruptedException {
 
+        System.out.println();
         System.out.println("ВАЖНОЕ ОБЪЯВЛЕНИЕ >>> Подготовка!!!");
         Race race = new Race(new Road(60), new Tunnel(), new Road(40));
         Car[] cars = new Car[CARS_COUNTS];
@@ -22,9 +23,13 @@ public class Main {
         }
 
         Car.getLeatsGoRacing().await();
+        System.out.println();
         System.out.println("ВАЖНОЕ ОБЪЯВЛЕНИЕ >>> Гонка началась!!!");
+        System.out.println();
         Road.getFinishRacing().await();
+        System.out.println();
         System.out.println("ВАЖНОЕ ОБЪЯВЛЕНИЕ >>> Гонка закончилась!!!");
+        System.out.println();
 
         for (int i = 0; i < cars.length; i++) {
             String winner = " Winner";
