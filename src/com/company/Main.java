@@ -1,8 +1,5 @@
 package com.company;
 
-import static com.company.Car.leatsGoRacing;
-import static com.company.Road.finishRacing;
-
 public class Main {
 
     public static final int CARS_COUNTS = 4;
@@ -24,9 +21,9 @@ public class Main {
             new Thread(cars[i]).start();
         }
 
-        leatsGoRacing.await();
+        Car.getLeatsGoRacing().await();
         System.out.println("ВАЖНОЕ ОБЪЯВЛЕНИЕ >>> Гонка началась!!!");
-        finishRacing.await();
+        Road.getFinishRacing().await();
         System.out.println("ВАЖНОЕ ОБЪЯВЛЕНИЕ >>> Гонка закончилась!!!");
 
         for (int i = 0; i < cars.length; i++) {

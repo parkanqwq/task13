@@ -18,14 +18,14 @@ public class Tunnel extends Stage {
         try {
             try {
                 System.out.println(c.getName() + " готовится к этапу(ждет): " + description);
-                racingTunnel.acquire();
+                racingTunnel.acquire(1);
                 System.out.println(c.getName() + " начал этап: " + description);
                 Thread.sleep((long) (length / c.getSpeed() * 1000));
             } catch (InterruptedException e) {
                 e.printStackTrace();
             } finally {
                 System.out.println(c.getName() + " закончил этап: " + description);
-                racingTunnel.release();
+                racingTunnel.release(1);
             }
         } catch (Exception e) {
             e.printStackTrace();

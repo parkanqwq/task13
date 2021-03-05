@@ -4,7 +4,7 @@ import java.util.concurrent.CountDownLatch;
 
 public class Road extends Stage {
 
-    public static final CountDownLatch finishRacing = new CountDownLatch(8);
+    private static CountDownLatch finishRacing = new CountDownLatch(8);
     private static int winnerCar = 0;
 
     public Road(float length) {
@@ -28,5 +28,9 @@ public class Road extends Stage {
         if (winnerCar == 6) c.setName(c.getName() + " - занял 2 место,");
         if (winnerCar == 7) c.setName(c.getName() + " - занял 3 место,");
         if (winnerCar == 8) c.setName(c.getName() + " - занял 4 место,");
+    }
+
+    public static CountDownLatch getFinishRacing() {
+        return finishRacing;
     }
 }
