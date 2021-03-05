@@ -2,12 +2,14 @@ package com.company;
 
 import java.util.concurrent.Semaphore;
 
+import static com.company.Main.CARS_COUNTS;
+
 public class Tunnel extends Stage {
 
-    private static Semaphore racingTunnel = new Semaphore(2);
+    private static Semaphore racingTunnel = new Semaphore(CARS_COUNTS/2);
 
     public Tunnel() {
-        this.length = 80;
+        this.length = 80.0f;
         this.description = "Тоннель " + length + " метров";
     }
 
@@ -16,14 +18,14 @@ public class Tunnel extends Stage {
         try {
             try {
                 System.out.println(c.getName() + " готовится к этапу(ждет): " + description);
-                racingTunnel.acquire(1);
+                racingTunnel.acquire();
                 System.out.println(c.getName() + " начал этап: " + description);
-                Thread.sleep(length / c.getSpeed() * 1000);
+                Thread.sleep((long) (length / c.getSpeed() * 1000));
             } catch (InterruptedException e) {
                 e.printStackTrace();
             } finally {
                 System.out.println(c.getName() + " закончил этап: " + description);
-                racingTunnel.release(1);
+                racingTunnel.release();
             }
         } catch (Exception e) {
             e.printStackTrace();

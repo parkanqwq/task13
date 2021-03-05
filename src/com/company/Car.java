@@ -3,13 +3,14 @@ package com.company;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.CyclicBarrier;
 
+import static com.company.Main.CARS_COUNTS;
+
 public class Car implements Runnable {
 
-    private static CyclicBarrier waitCars = new CyclicBarrier (4);
-    public static final CountDownLatch leatsGoRacing = new CountDownLatch(4);
-    private static int CARS_COUNT;
+    private static CyclicBarrier waitCars = new CyclicBarrier (CARS_COUNTS);
+    public static final CountDownLatch leatsGoRacing = new CountDownLatch(CARS_COUNTS);
     private Race race;
-    private int speed;
+    private float speed;
     private String name;
     private boolean winner = false;
 
@@ -25,15 +26,14 @@ public class Car implements Runnable {
         return name;
     }
 
-    public int getSpeed() {
+    public float getSpeed() {
         return speed;
     }
 
-    public Car(Race race, int speed) {
+    public Car(Race race, float speed, int name) {
         this.race = race;
         this.speed = speed;
-        CARS_COUNT++;
-        this.name = "Участник #" + CARS_COUNT;
+        this.name = "Участник #" + name;
     }
 
     @Override
@@ -50,5 +50,9 @@ public class Car implements Runnable {
         for (int i = 0; i < race.getStages().size(); i++) {
             race.getStages().get(i).go(this);
         }
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }
