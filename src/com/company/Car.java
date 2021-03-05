@@ -2,11 +2,12 @@ package com.company;
 
 import java.util.concurrent.CountDownLatch;
 
-import static com.company.Main.CARS_COUNTS;
+import static com.company.Main.*;
 
 public class Car implements Runnable {
 
-    private static final CountDownLatch leatsGoRacing = new CountDownLatch(CARS_COUNTS);
+    private static CountDownLatch leatsGoRacing = new CountDownLatch(CARS_COUNTS);
+    private static int coreWin = 0;
     private Race race;
     private float speed;
     private String name;
@@ -49,10 +50,26 @@ public class Car implements Runnable {
         for (int i = 0; i < race.getStages().size(); i++) {
             race.getStages().get(i).go(this);
         }
-    }
 
-    public void setName(String name) {
-        this.name = name;
+        coreWin++;
+        name = name + " занял " + coreWin + " место!";
+        if (coreWin == 1) {
+            System.out.println();
+            setWinner(true);
+            System.out.println("ВАЖНОЕ ОБЪЯВЛЕНИЕ >>> " + name);
+            System.out.println();
+        }
+        if (coreWin == CARS_COUNTS) {
+            System.out.println();
+            System.out.println("ВАЖНОЕ ОБЪЯВЛЕНИЕ >>> Гонка закончилась!!!");
+            System.out.println();
+            for (int i = 0; i < cars.length; i++) {
+                String winner = " Winner";
+                String notWinner = " Not winner";
+                if (cars[i].isWinner()) System.out.println(cars[i].getName() + winner);
+                else System.out.println(cars[i].getName() + notWinner);
+            }
+        }
     }
 
     public static CountDownLatch getLeatsGoRacing() {

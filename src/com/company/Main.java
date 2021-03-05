@@ -4,12 +4,13 @@ public class Main {
 
     public static final int CARS_COUNTS = 4;
 
+    public static Car[] cars = new Car[CARS_COUNTS];
+
     public static void main(String[] args) throws InterruptedException {
 
         System.out.println();
         System.out.println("ВАЖНОЕ ОБЪЯВЛЕНИЕ >>> Подготовка!!!");
         Race race = new Race(new Road(60), new Tunnel(), new Road(40));
-        Car[] cars = new Car[CARS_COUNTS];
         for (int i = 0; i < cars.length; i++) {
             cars[i] = new Car(race, 20 + (int) (Math.random() * 10), i+1);
         }
@@ -26,17 +27,6 @@ public class Main {
         System.out.println();
         System.out.println("ВАЖНОЕ ОБЪЯВЛЕНИЕ >>> Гонка началась!!!");
         System.out.println();
-        Road.getFinishRacing().await();
-        System.out.println();
-        System.out.println("ВАЖНОЕ ОБЪЯВЛЕНИЕ >>> Гонка закончилась!!!");
-        System.out.println();
-
-        for (int i = 0; i < cars.length; i++) {
-            String winner = " Winner";
-            String notWinner = " Not winner";
-            if (cars[i].isWinner()) System.out.println(cars[i].getName() + winner);
-            else System.out.println(cars[i].getName() + notWinner);
-        }
     }
 }
 
